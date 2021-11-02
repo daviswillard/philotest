@@ -8,7 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "/Users/dwillard/philo_test/sources/init.c" "/Users/dwillard/philo_test/cmake-build-debug/CMakeFiles/philo_test.dir/sources/init.c.o"
   "/Users/dwillard/philo_test/sources/main.c" "/Users/dwillard/philo_test/cmake-build-debug/CMakeFiles/philo_test.dir/sources/main.c.o"
+  "/Users/dwillard/philo_test/sources/utils.c" "/Users/dwillard/philo_test/cmake-build-debug/CMakeFiles/philo_test.dir/sources/utils.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

@@ -83,7 +83,13 @@
 		<Unit filename="/Users/dwillard/philo_test/philo.h">
 			<Option target="philo_test"/>
 		</Unit>
+		<Unit filename="/Users/dwillard/philo_test/sources/init.c">
+			<Option target="philo_test"/>
+		</Unit>
 		<Unit filename="/Users/dwillard/philo_test/sources/main.c">
+			<Option target="philo_test"/>
+		</Unit>
+		<Unit filename="/Users/dwillard/philo_test/sources/utils.c">
 			<Option target="philo_test"/>
 		</Unit>
 		<Unit filename="/Users/dwillard/philo_test/CMakeLists.txt">

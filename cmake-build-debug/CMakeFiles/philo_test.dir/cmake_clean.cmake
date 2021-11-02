@@ -1,5 +1,7 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/philo_test.dir/sources/init.c.o"
   "CMakeFiles/philo_test.dir/sources/main.c.o"
+  "CMakeFiles/philo_test.dir/sources/utils.c.o"
   "philo_test"
   "philo_test.pdb"
 )

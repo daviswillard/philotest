@@ -129,6 +129,30 @@ philo_test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/philo_test.dir/build.make CMakeFiles/philo_test.dir/build
 .PHONY : philo_test/fast
 
+sources/init.o: sources/init.c.o
+.PHONY : sources/init.o
+
+# target to build an object file
+sources/init.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philo_test.dir/build.make CMakeFiles/philo_test.dir/sources/init.c.o
+.PHONY : sources/init.c.o
+
+sources/init.i: sources/init.c.i
+.PHONY : sources/init.i
+
+# target to preprocess a source file
+sources/init.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philo_test.dir/build.make CMakeFiles/philo_test.dir/sources/init.c.i
+.PHONY : sources/init.c.i
+
+sources/init.s: sources/init.c.s
+.PHONY : sources/init.s
+
+# target to generate assembly for a file
+sources/init.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philo_test.dir/build.make CMakeFiles/philo_test.dir/sources/init.c.s
+.PHONY : sources/init.c.s
+
 sources/main.o: sources/main.c.o
 .PHONY : sources/main.o
 
@@ -153,6 +177,30 @@ sources/main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/philo_test.dir/build.make CMakeFiles/philo_test.dir/sources/main.c.s
 .PHONY : sources/main.c.s
 
+sources/utils.o: sources/utils.c.o
+.PHONY : sources/utils.o
+
+# target to build an object file
+sources/utils.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philo_test.dir/build.make CMakeFiles/philo_test.dir/sources/utils.c.o
+.PHONY : sources/utils.c.o
+
+sources/utils.i: sources/utils.c.i
+.PHONY : sources/utils.i
+
+# target to preprocess a source file
+sources/utils.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philo_test.dir/build.make CMakeFiles/philo_test.dir/sources/utils.c.i
+.PHONY : sources/utils.c.i
+
+sources/utils.s: sources/utils.c.s
+.PHONY : sources/utils.s
+
+# target to generate assembly for a file
+sources/utils.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philo_test.dir/build.make CMakeFiles/philo_test.dir/sources/utils.c.s
+.PHONY : sources/utils.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,9 +210,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... philo_test"
+	@echo "... sources/init.o"
+	@echo "... sources/init.i"
+	@echo "... sources/init.s"
 	@echo "... sources/main.o"
 	@echo "... sources/main.i"
 	@echo "... sources/main.s"
+	@echo "... sources/utils.o"
+	@echo "... sources/utils.i"
+	@echo "... sources/utils.s"
 .PHONY : help
 
 

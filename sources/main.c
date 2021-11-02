@@ -1,24 +1,31 @@
 #include <philo.h>
 
-pthread_mutex_t writer = PTHREAD_MUTEX_INITIALIZER;
-
 void	eat(t_philosopher *philo)
 {
+	pthread_mutex_lock(philo->data->writer);
+	printf("philosopher %d has taken left fork\n", philo->name);
 	printf("philosopher %d is eating\n", philo->name);
+	usleep(philo->data->time_to_eat * 1000);
+	pthread_mutex_unlock(philo->data->writer);
+	philo->last_eat = get_time() - philo->data->start_time;
+	if (philo->data->eat_count > 0 && philo->eaten < philo->data->eat_count)
+		philo->eaten++;
 }
 
-void	take_forks(t_philosopher *philo)
+_Noreturn void	forks_action(t_philosopher *philo)
 {
-	pthread_mutex_lock(philo->right_fork);
-	pthread_mutex_lock(&writer);
-	printf("philosopher %d has taken right fork\n", philo->name);
-	pthread_mutex_unlock(&writer);
-	pthread_mutex_lock(philo->left_fork);
-	pthread_mutex_lock(&writer);
-	printf("philosopher %d has taken left fork\n", philo->name);
-	eat(philo);
-	pthread_mutex_unlock(&writer);
-	usleep(200 * 1000);
+	while (1)
+	{
+		pthread_mutex_lock(&philo->right_fork);
+		print(philo->data->writer, philo->name, "has taken right fork");
+		pthread_mutex_lock(philo->left_fork);
+		eat(philo);
+		pthread_mutex_unlock(&philo->right_fork);
+		pthread_mutex_unlock(philo->left_fork);
+		print(philo->data->writer, philo->name, "is sleeping");
+		usleep(philo->data->time_to_sleep * 1000);
+		print(philo->data->writer, philo->name, "is thinking");
+	}
 }
 
 void	*philosophy(void *args)
@@ -26,52 +33,43 @@ void	*philosophy(void *args)
 	t_philosopher *philo;
 
 	philo = (t_philosopher *)args;
-	take_forks(philo);
+	if (!(philo->name % 2))
+		usleep(philo->data->time_to_eat * 1000);
+	forks_action(philo);
 }
 
-void	create_threads(pthread_t *threads, t_philosopher *philo)
+void	create_threads(pthread_t *threads, t_philosopher *philo[])
 {
 	int	index;
 
 	index = 0;
+	philo[0]->data->start_time = get_time();
 	while (index < 4)
 	{
-		if (!(index % 2))
-			;
-		else
-			usleep(400 * 1000);
-		pthread_create(&threads[index], NULL, philosophy, &philo[index]);
+		pthread_create(&threads[index], NULL, philosophy, philo[index]);
 		index++;
 	}
 }
 
-int main(void)
+int main(int argc, char **argv)
 {
-	t_philosopher	philo[4];
-	int				index;
+	t_philosopher	*philo[4];
 	pthread_t		threads[4];
+	t_data			*data;
+	int				index;
 
-	index = 0;
-	while (index < 4)
-	{
-		pthread_mutex_init(philo[index].right_fork, NULL);
-		index++;
-	}
-	index = 0;
-	while (index < 4)
-	{
+	data = data_init(argc, argv);
+	for (index = 0; index < 4; index++)
+		philo[index] = philo_init(index, data);
+	for (index = 0; index < 4; index++)
+		pthread_mutex_init(&philo[index]->right_fork, NULL);
+	for (index = 0; index < 4; index++)
 		if (index == 0)
-			philo[index].left_fork = philo[3].right_fork;
+			philo[index]->left_fork = &philo[3]->right_fork;
 		else
-			philo[index].left_fork = philo[index - 1].right_fork;
-		index++;
-	}
+			philo[index]->left_fork = &philo[index - 1]->right_fork;
 	create_threads(threads, philo);
-	index = 0;
-	while (index < 4)
-	{
+	for (index = 0; index < 4; index++)
 		pthread_join(threads[index], NULL);
-		index++;
-	}
 	return 0;
 }
