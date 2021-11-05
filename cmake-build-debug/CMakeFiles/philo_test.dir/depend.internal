@@ -7,6 +7,12 @@ CMakeFiles/philo_test.dir/sources/init.c.o
 CMakeFiles/philo_test.dir/sources/main.c.o
  ../philo.h
  /Users/dwillard/philo_test/sources/main.c
+CMakeFiles/philo_test.dir/sources/threads.c.o
+ ../philo.h
+ /Users/dwillard/philo_test/sources/threads.c
 CMakeFiles/philo_test.dir/sources/utils.c.o
  ../philo.h
  /Users/dwillard/philo_test/sources/utils.c
+CMakeFiles/philo_test.dir/sources/watch.c.o
+ ../philo.h
+ /Users/dwillard/philo_test/sources/watch.c

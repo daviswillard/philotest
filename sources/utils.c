@@ -24,7 +24,7 @@ int	ft_atoi(const char *str)
 	return (value);
 }
 
-unsigned	get_time(void)
+uint64_t	get_time(void)
 {
 	struct timeval	s_tv;
 
@@ -32,8 +32,30 @@ unsigned	get_time(void)
 	return (s_tv.tv_sec * 1000 + s_tv.tv_usec / 1000);
 }
 
-void	print(pthread_mutex_t *writer, int name, char *message)
+void	ft_usleep(uint64_t delta_t)
 {
+	unsigned long long	result;
+
+	result = get_time() + delta_t;
+	while (get_time() < result)
+		usleep(1);
+}
+
+void	print(t_philosopher *philo, char *message)
+{
+	static int		dying_message = 0;
+	pthread_mutex_t	*writer;
+	int				name;
+
+	if (philo->is_dead && !dying_message)
+	{
+		printf("philosopher %d is dead\n", philo->name);
+		dying_message = 1;
+	}
+	writer = philo->data->writer;
+	name = philo->name;
+	if (philo->data->life_status)
+		return ;
 	pthread_mutex_lock(writer);
 	printf("philosopher %d %s\n", name, message);
 	pthread_mutex_unlock(writer);

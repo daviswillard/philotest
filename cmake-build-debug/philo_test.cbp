@@ -89,7 +89,13 @@
 		<Unit filename="/Users/dwillard/philo_test/sources/main.c">
 			<Option target="philo_test"/>
 		</Unit>
+		<Unit filename="/Users/dwillard/philo_test/sources/threads.c">
+			<Option target="philo_test"/>
+		</Unit>
 		<Unit filename="/Users/dwillard/philo_test/sources/utils.c">
+			<Option target="philo_test"/>
+		</Unit>
+		<Unit filename="/Users/dwillard/philo_test/sources/watch.c">
 			<Option target="philo_test"/>
 		</Unit>
 		<Unit filename="/Users/dwillard/philo_test/CMakeLists.txt">

@@ -7,6 +7,7 @@ t_philosopher	*philo_init(int index, t_data *data)
 	ret = malloc(sizeof(t_philosopher));
 	if (!ret)
 		return (NULL);
+	ret->is_dead = 0;
 	ret->name = index;
 	ret->data = data;
 	ret->last_eat = 0;
@@ -20,6 +21,7 @@ t_data	*data_init(int argc, char **argv)
 	ret = malloc(sizeof(t_data));
 	if (!ret)
 		return (NULL);
+	ret->life_status = 1;
 	ret->philo_count = ft_atoi(argv[1]);
 	ret->time_to_die = ft_atoi(argv[2]);
 	ret->time_to_eat = ft_atoi(argv[3]);
