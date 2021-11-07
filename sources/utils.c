@@ -14,10 +14,10 @@ int	ft_atoi(const char *str)
 	if (str[ind] == '-' || str[ind] == '+')
 		if (str[ind++] == '-')
 			sgn = -1;
-	while (str[ind] >= 48 && str[ind] <= 57)
+	while (str[ind] >= '0' && str[ind] <= '9')
 	{
 		value *= 10;
-		value += (str[ind++] - 48);
+		value += (str[ind++] - '0');
 	}
 	if (sgn == -1)
 		value = -value;
@@ -38,25 +38,21 @@ void	ft_usleep(uint64_t delta_t)
 
 	result = get_time() + delta_t;
 	while (get_time() < result)
-		usleep(1);
+		usleep(100);
 }
 
 void	print(t_philosopher *philo, char *message)
 {
-	static int		dying_message = 0;
-	pthread_mutex_t	*writer;
 	int				name;
+	pthread_mutex_t	*writer;
+	uint64_t		time;
 
-	if (philo->is_dead && !dying_message)
-	{
-		printf("philosopher %d is dead\n", philo->name);
-		dying_message = 1;
-	}
-	writer = philo->data->writer;
+	time = get_time() - philo->data->start_time;
+	writer = &philo->data->writer;
 	name = philo->name;
-	if (philo->data->life_status)
+	if (!philo->data->life_status)
 		return ;
 	pthread_mutex_lock(writer);
-	printf("philosopher %d %s\n", name, message);
+	printf("%6llu philosopher %d %s\n", time, name, message);
 	pthread_mutex_unlock(writer);
 }

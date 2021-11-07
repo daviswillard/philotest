@@ -16,7 +16,8 @@ typedef struct s_data
 	uint64_t		time_to_die;
 	uint64_t		time_to_eat;
 	uint64_t		start_time;
-	pthread_mutex_t	*writer;
+	void			*philos;
+	pthread_mutex_t	writer;
 }t_data;
 
 typedef struct s_philosopher
@@ -42,7 +43,9 @@ void			ft_usleep(uint64_t delta_t);
 
 void			*watch(void *args);
 
-t_data			*data_init(int argc, char **argv);
+void			*dead_announcer(void *args);
+
+t_data			*data_init(int argc, char **argv, t_philosopher **philo);
 
 t_philosopher	*philo_init(int index, t_data *data);
 

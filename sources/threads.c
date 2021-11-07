@@ -3,13 +3,12 @@
 
 static void	eat(t_philosopher *philo)
 {
-	print(philo, "is eating");
 	philo->last_eat = get_time();
+	print(philo, "is eating");
 	ft_usleep(philo->data->time_to_eat);
 	pthread_mutex_unlock(&philo->right_fork);
 	pthread_mutex_unlock(philo->left_fork);
-	if (philo->data->eat_count > 0 && philo->eaten < philo->data->eat_count)
-		philo->eaten++;
+	philo->eaten++;
 }
 
 static void	forks_action(t_philosopher *philo)
@@ -55,11 +54,14 @@ static void	*philosophy(void *args)
 
 void	create_threads(pthread_t *threads, t_philosopher *philo[])
 {
-	int	index;
+	int			index;
+	pthread_t	announcer;
 
 	index = 0;
+	pthread_create(&announcer, NULL, dead_announcer, philo[0]->data);
+	pthread_detach(announcer);
 	philo[0]->data->start_time = get_time();
-	while (index < 4)
+	while (index < philo[0]->data->philo_count)
 	{
 		pthread_create(&threads[index], NULL, philosophy, philo[index]);
 		index++;

@@ -14,7 +14,7 @@ t_philosopher	*philo_init(int index, t_data *data)
 	return (ret);
 }
 
-t_data	*data_init(int argc, char **argv)
+t_data	*data_init(int argc, char **argv, t_philosopher **philo)
 {
 	t_data	*ret;
 
@@ -30,6 +30,7 @@ t_data	*data_init(int argc, char **argv)
 		ret->eat_count = ft_atoi(argv[5]);
 	else
 		ret->eat_count = -1;
-	pthread_mutex_init(ret->writer, NULL);
+	pthread_mutex_init(&ret->writer, NULL);
+	ret->philos = philo;
 	return (ret);
 }
