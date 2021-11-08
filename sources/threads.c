@@ -1,8 +1,21 @@
-#include <philo.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   threads.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/08 19:59:45 by dwillard          #+#    #+#             */
+/*   Updated: 2021/11/08 19:59:52 by dwillard         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include <philo.h>
 
 static void	eat(t_philosopher *philo)
 {
+	if (philo->last_eat + philo->data->time_to_die > get_time())
+		philo->is_dead = 1;
 	philo->last_eat = get_time();
 	print(philo, "is eating");
 	ft_usleep(philo->data->time_to_eat);
@@ -65,6 +78,6 @@ void	create_threads(pthread_t *threads, t_philosopher *philo[])
 	{
 		pthread_create(&threads[index], NULL, philosophy, philo[index]);
 		index++;
+		ft_usleep(1);
 	}
 }
-
