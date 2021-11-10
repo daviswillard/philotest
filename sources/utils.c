@@ -68,3 +68,16 @@ void	print(t_philosopher *philo, char *message)
 	printf("%6llu philosopher %d %s\n", time, name, message);
 	pthread_mutex_unlock(writer);
 }
+
+int	free_that(void *this, void *that)
+{
+	if (!this)
+		;
+	else
+		free(this);
+	if (!that)
+		;
+	else
+		free(that);
+	return (0);
+}

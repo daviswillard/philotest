@@ -24,9 +24,9 @@ void	*watch(void *args)
 			return (NULL);
 		if (get_time() > arg->last_eat + arg->data->time_to_die)
 		{
-			arg->is_dead = 1;
+			arg->data->is_dead = arg->name;
 			arg->data->life_status = 0;
-			printf("%6d\n", arg->name);
+			ft_usleep(5);
 			printf("%6llu time he ate last\n", arg->last_eat
 				- arg->data->start_time);
 			return (NULL);
@@ -37,22 +37,16 @@ void	*watch(void *args)
 
 void	*dead_announcer(void *args)
 {
-	t_philosopher	**philos;
 	u_int64_t		time;
 	t_data			*data;
-	int				name;
 
 	data = (t_data *)args;
-	philos = (t_philosopher **)data->philos;
-	name = 0;
 	while (1)
 	{
 		if (!data->life_status)
 		{
-			while (!philos[name]->is_dead)
-				name++;
 			time = get_time() - data->start_time;
-			printf("%6llu philosopher %d is dead\n", time, philos[name]->name);
+			printf("%6llu philosopher %d is dead\n", time, data->is_dead);
 			break ;
 		}
 		ft_usleep(2);

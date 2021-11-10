@@ -13,6 +13,9 @@ CMakeFiles/philo_test.dir/sources/threads.c.o: \
 CMakeFiles/philo_test.dir/sources/utils.c.o: \
  ../philo.h \
  ../sources/utils.c
+CMakeFiles/philo_test.dir/sources/utils_2.c.o: \
+ ../philo.h \
+ ../sources/utils_2.c
 CMakeFiles/philo_test.dir/sources/watch.c.o: \
  ../philo.h \
  ../sources/watch.c

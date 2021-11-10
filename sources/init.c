@@ -16,10 +16,11 @@ t_philosopher	*philo_init(int index, t_data *data)
 {
 	t_philosopher	*ret;
 
+	if (!data)
+		return (NULL);
 	ret = malloc(sizeof(t_philosopher));
 	if (!ret)
 		return (NULL);
-	ret->is_dead = 0;
 	ret->name = index;
 	ret->data = data;
 	ret->last_eat = 0;
@@ -43,6 +44,34 @@ t_data	*data_init(int argc, char **argv, t_philosopher **philo)
 	else
 		ret->eat_count = -1;
 	pthread_mutex_init(&ret->writer, NULL);
-	ret->philos = philo;
+	ret->is_dead = 0;
 	return (ret);
+}
+
+int	threads_init(t_data *data, t_philosopher **philo)
+{
+	int	index;
+
+	index = -1;
+	while (++index < data->philo_count)
+	{
+		philo[index] = philo_init(index, data);
+		if (!philo[index])
+			return (free_philo(&philo));
+	}
+	index = -1;
+	while (++index < data->philo_count)
+	{
+		if (pthread_mutex_init(&philo[index]->right_fork, NULL))
+			return (mutex_destroyer(index, philo));
+	}
+	index = -1;
+	while (++index < data->philo_count)
+	{
+		if (index == 0)
+			philo[index]->left_fork = &philo[data->philo_count - 1]->right_fork;
+		else
+			philo[index]->left_fork = &philo[index - 1]->right_fork;
+	}
+	return (0);
 }

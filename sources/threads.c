@@ -15,7 +15,7 @@
 static void	eat(t_philosopher *philo)
 {
 	if (philo->last_eat + philo->data->time_to_die > get_time())
-		philo->is_dead = 1;
+		philo->data->is_dead = philo->name;
 	philo->last_eat = get_time();
 	print(philo, "is eating");
 	ft_usleep(philo->data->time_to_eat);
@@ -65,7 +65,7 @@ static void	*philosophy(void *args)
 	return (NULL);
 }
 
-void	create_threads(pthread_t *threads, t_philosopher *philo[])
+void	create_threads(pthread_t *threads, t_philosopher **philo)
 {
 	int			index;
 	pthread_t	announcer;

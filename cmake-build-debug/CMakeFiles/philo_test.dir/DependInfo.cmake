@@ -12,6 +12,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/dwillard/philo_test/sources/main.c" "/Users/dwillard/philo_test/cmake-build-debug/CMakeFiles/philo_test.dir/sources/main.c.o"
   "/Users/dwillard/philo_test/sources/threads.c" "/Users/dwillard/philo_test/cmake-build-debug/CMakeFiles/philo_test.dir/sources/threads.c.o"
   "/Users/dwillard/philo_test/sources/utils.c" "/Users/dwillard/philo_test/cmake-build-debug/CMakeFiles/philo_test.dir/sources/utils.c.o"
+  "/Users/dwillard/philo_test/sources/utils_2.c" "/Users/dwillard/philo_test/cmake-build-debug/CMakeFiles/philo_test.dir/sources/utils_2.c.o"
   "/Users/dwillard/philo_test/sources/watch.c" "/Users/dwillard/philo_test/cmake-build-debug/CMakeFiles/philo_test.dir/sources/watch.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")

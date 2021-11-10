@@ -225,6 +225,30 @@ sources/utils.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/philo_test.dir/build.make CMakeFiles/philo_test.dir/sources/utils.c.s
 .PHONY : sources/utils.c.s
 
+sources/utils_2.o: sources/utils_2.c.o
+.PHONY : sources/utils_2.o
+
+# target to build an object file
+sources/utils_2.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philo_test.dir/build.make CMakeFiles/philo_test.dir/sources/utils_2.c.o
+.PHONY : sources/utils_2.c.o
+
+sources/utils_2.i: sources/utils_2.c.i
+.PHONY : sources/utils_2.i
+
+# target to preprocess a source file
+sources/utils_2.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philo_test.dir/build.make CMakeFiles/philo_test.dir/sources/utils_2.c.i
+.PHONY : sources/utils_2.c.i
+
+sources/utils_2.s: sources/utils_2.c.s
+.PHONY : sources/utils_2.s
+
+# target to generate assembly for a file
+sources/utils_2.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philo_test.dir/build.make CMakeFiles/philo_test.dir/sources/utils_2.c.s
+.PHONY : sources/utils_2.c.s
+
 sources/watch.o: sources/watch.c.o
 .PHONY : sources/watch.o
 
@@ -270,6 +294,9 @@ help:
 	@echo "... sources/utils.o"
 	@echo "... sources/utils.i"
 	@echo "... sources/utils.s"
+	@echo "... sources/utils_2.o"
+	@echo "... sources/utils_2.i"
+	@echo "... sources/utils_2.s"
 	@echo "... sources/watch.o"
 	@echo "... sources/watch.i"
 	@echo "... sources/watch.s"

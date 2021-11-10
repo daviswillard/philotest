@@ -95,6 +95,9 @@
 		<Unit filename="/Users/dwillard/philo_test/sources/utils.c">
 			<Option target="philo_test"/>
 		</Unit>
+		<Unit filename="/Users/dwillard/philo_test/sources/utils_2.c">
+			<Option target="philo_test"/>
+		</Unit>
 		<Unit filename="/Users/dwillard/philo_test/sources/watch.c">
 			<Option target="philo_test"/>
 		</Unit>

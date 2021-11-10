@@ -12,7 +12,19 @@
 
 #include <philo.h>
 
-int	main(int argc, char **argv)
+int	parse_args(int argc, char **argv)
+{
+	int	philo_count;
+
+	if (argc > 6 || argc < 5)
+		return (-1);
+	philo_count = ft_atoi(argv[1]);
+	if (philo_count < 1)
+		return (-1);
+	return (0);
+}
+
+void	start(int argc, char **argv)
 {
 	t_philosopher	**philo;
 	pthread_t		*threads;
@@ -21,20 +33,28 @@ int	main(int argc, char **argv)
 
 	philo = malloc(sizeof(t_philosopher **) * ft_atoi(argv[1]));
 	threads = malloc(sizeof(pthread_t *) * ft_atoi(argv[1]));
-	if (!philo | !threads)
-		return (1);
+	if (!philo || !threads)
+	{
+		free_that(philo, threads);
+		return ;
+	}
 	data = data_init(argc, argv, philo);
-	for (index = 0; index < data->philo_count; index++)
-		philo[index] = philo_init(index, data);
-	for (index = 0; index < data->philo_count; index++)
-		pthread_mutex_init(&philo[index]->right_fork, NULL);
-	for (index = 0; index < data->philo_count; index++)
-		if (index == 0)
-			philo[index]->left_fork = &philo[data->philo_count - 1]->right_fork;
-		else
-			philo[index]->left_fork = &philo[index - 1]->right_fork;
-	create_threads(threads, philo);
-	for (index = 0; index < data->philo_count; index++)
+	index = threads_init(data, philo);
+	if (!index)
+		create_threads(threads, philo);
+	index = 0;
+	while (index < data->philo_count)
+	{
 		pthread_join(threads[index], NULL);
+		index++;
+	}
+	mutex_destroyer(0, philo);
+	free_that(NULL, threads);
+}
+
+int	main(int argc, char **argv)
+{
+	parse_args(argc, argv);
+	start(argc, argv);
 	return (0);
 }

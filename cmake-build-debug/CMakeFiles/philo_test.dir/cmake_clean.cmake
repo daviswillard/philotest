@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/philo_test.dir/sources/main.c.o"
   "CMakeFiles/philo_test.dir/sources/threads.c.o"
   "CMakeFiles/philo_test.dir/sources/utils.c.o"
+  "CMakeFiles/philo_test.dir/sources/utils_2.c.o"
   "CMakeFiles/philo_test.dir/sources/watch.c.o"
   "philo_test"
   "philo_test.pdb"
