@@ -62,7 +62,7 @@ void	print(t_philosopher *philo, char *message)
 	time = get_time() - philo->data->start_time;
 	writer = &philo->data->writer;
 	name = philo->name;
-	if (!philo->data->life_status)
+	if (!philo->data->life_status || philo->data->meal_done)
 		return ;
 	pthread_mutex_lock(writer);
 	printf("%6llu philosopher %d %s\n", time, name, message);

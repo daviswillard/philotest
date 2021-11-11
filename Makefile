@@ -17,7 +17,7 @@ FLAGS = -Wall -Wextra -Werror -MMD
 SRC_DIR = sources/
 
 SRCS = $(SRC_DIR)main.c $(SRC_DIR)init.c $(SRC_DIR)threads.c \
-		$(SRC_DIR)utils.c $(SRC_DIR)watch.c
+		$(SRC_DIR)utils.c $(SRC_DIR)watch.c $(SRC_DIR)utils_2.c
 
 OBJS = ${SRCS:.c=.o}
 DEP = ${SRCS:.c=.d}

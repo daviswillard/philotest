@@ -18,6 +18,26 @@ unistd.h
 stdio.h
 -
 
+/Users/dwillard/philo_test/sources/init.c
+philo.h
+-
+
+/Users/dwillard/philo_test/sources/main.c
+philo.h
+-
+
+/Users/dwillard/philo_test/sources/threads.c
+philo.h
+-
+
+/Users/dwillard/philo_test/sources/utils.c
+philo.h
+-
+
+/Users/dwillard/philo_test/sources/utils_2.c
+philo.h
+-
+
 /Users/dwillard/philo_test/sources/watch.c
 philo.h
 -

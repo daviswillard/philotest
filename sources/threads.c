@@ -21,7 +21,8 @@ static void	eat(t_philosopher *philo)
 	ft_usleep(philo->data->time_to_eat);
 	pthread_mutex_unlock(&philo->right_fork);
 	pthread_mutex_unlock(philo->left_fork);
-	philo->eaten++;
+	if (philo->eaten < philo->data->eat_count)
+		philo->eaten++;
 }
 
 static void	forks_action(t_philosopher *philo)
@@ -37,6 +38,11 @@ static void	forks_action(t_philosopher *philo)
 	{
 		pthread_mutex_lock(philo->left_fork);
 		print(philo, "has taken left fork");
+		if (&philo->right_fork == philo->left_fork)
+		{
+			ft_usleep(philo->data->time_to_die + 20);
+			return ;
+		}
 		pthread_mutex_lock(&philo->right_fork);
 		print(philo, "has taken right fork");
 	}
@@ -48,7 +54,7 @@ static void	*philosophy(void *args)
 	pthread_t		watcher;
 
 	philo = (t_philosopher *)args;
-	if (!(philo->name % 2))
+	if ((philo->name % 2))
 		ft_usleep(philo->data->time_to_eat);
 	pthread_create(&watcher, NULL, watch, philo);
 	pthread_detach(watcher);
@@ -56,6 +62,9 @@ static void	*philosophy(void *args)
 	{
 		forks_action(philo);
 		eat(philo);
+		if ((philo->data->eat_count >= 0 && philo->eaten
+				>= philo->data->eat_count))
+			break ;
 		print(philo, "is sleeping");
 		ft_usleep(philo->data->time_to_sleep);
 		print(philo, "is thinking");

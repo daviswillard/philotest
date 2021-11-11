@@ -44,11 +44,13 @@ int	mutex_destroyer(int index, t_philosopher **philo)
 			index++;
 		}
 		pthread_mutex_destroy(philo[0]->left_fork);
+		pthread_mutex_destroy(&philo[0]->data->writer);
 	}
 	else
 	{
 		while (counter < index)
 			pthread_mutex_destroy(&philo[counter++]->right_fork);
+		pthread_mutex_destroy(&philo[0]->data->writer);
 		free_philo(&philo);
 		return (-1);
 	}

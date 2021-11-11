@@ -25,6 +25,8 @@ typedef struct s_data
 	int				eat_count;
 	int				life_status;
 	int				is_dead;
+	int				meal_done;
+	void			*philo;
 	uint64_t		time_to_sleep;
 	uint64_t		time_to_die;
 	uint64_t		time_to_eat;
