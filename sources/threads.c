@@ -21,8 +21,7 @@ static void	eat(t_philosopher *philo)
 	ft_usleep(philo->data->time_to_eat);
 	pthread_mutex_unlock(&philo->right_fork);
 	pthread_mutex_unlock(philo->left_fork);
-	if (philo->eaten < philo->data->eat_count)
-		philo->eaten++;
+	philo->eaten++;
 }
 
 static void	forks_action(t_philosopher *philo)
@@ -30,21 +29,21 @@ static void	forks_action(t_philosopher *philo)
 	if (philo->name % 2)
 	{
 		pthread_mutex_lock(&philo->right_fork);
-		print(philo, "has taken right fork");
-		pthread_mutex_lock(philo->left_fork);
-		print(philo, "has taken left fork");
-	}
-	else
-	{
-		pthread_mutex_lock(philo->left_fork);
-		print(philo, "has taken left fork");
+		print(philo, "has taken a fork");
 		if (&philo->right_fork == philo->left_fork)
 		{
 			ft_usleep(philo->data->time_to_die + 20);
 			return ;
 		}
+		pthread_mutex_lock(philo->left_fork);
+		print(philo, "has taken a fork");
+	}
+	else
+	{
+		pthread_mutex_lock(philo->left_fork);
+		print(philo, "has taken a fork");
 		pthread_mutex_lock(&philo->right_fork);
-		print(philo, "has taken right fork");
+		print(philo, "has taken a fork");
 	}
 }
 

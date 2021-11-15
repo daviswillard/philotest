@@ -28,6 +28,7 @@ int	free_philo(t_philosopher ***philo)
 		}
 		free(*philo);
 	}
+	free(data);
 	return (-1);
 }
 

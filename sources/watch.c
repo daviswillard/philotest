@@ -51,8 +51,8 @@ static int	check_end(t_data *data)
 	}
 	if (counter == index)
 	{
-		data->meal_done = 1;
 		pthread_mutex_lock(&data->writer);
+		data->is_dead = 1;
 		return (1);
 	}
 	return (0);
@@ -68,15 +68,18 @@ void	*dead_announcer(void *args)
 	{
 		if (data->eat_count >= 0)
 			if (check_end(data))
-				return (NULL);
+				break ;
 		if (!data->life_status)
 		{
 			time = get_time() - data->start_time;
-			ft_usleep(4);
+			ft_usleep(5);
+			pthread_mutex_lock(&data->writer);
 			printf("%6llu philosopher %d is dead\n", time, data->is_dead);
 			break ;
 		}
 		ft_usleep(2);
 	}
+	pthread_mutex_unlock(&data->writer);
+	pthread_mutex_destroy(&data->writer);
 	return (NULL);
 }

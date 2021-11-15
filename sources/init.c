@@ -22,7 +22,7 @@ t_philosopher	*philo_init(int index, t_data *data)
 	if (!ret)
 		return (NULL);
 	ret->eaten = 0;
-	ret->name = index;
+	ret->name = index + 1;
 	ret->data = data;
 	ret->last_eat = 0;
 	return (ret);
@@ -44,7 +44,6 @@ t_data	*data_init(int argc, char **argv, t_philosopher **philo)
 		ret->eat_count = ft_atoi(argv[5]);
 	else
 		ret->eat_count = -1;
-	ret->meal_done = 0;
 	ret->philo = philo;
 	pthread_mutex_init(&ret->writer, NULL);
 	ret->is_dead = 0;
