@@ -43,10 +43,10 @@ void	start(int argc, char **argv)
 	}
 	data = data_init(argc, argv, philo);
 	index = threads_init(data, philo);
-	if (!index)
+	if (!index && data)
 		create_threads(threads, philo);
 	index = 0;
-	while (index < data->philo_count)
+	while (data && index < data->philo_count)
 	{
 		pthread_join(threads[index], NULL);
 		index++;

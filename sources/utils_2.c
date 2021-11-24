@@ -6,7 +6,7 @@
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 18:42:00 by dwillard          #+#    #+#             */
-/*   Updated: 2021/11/10 18:42:03 by dwillard         ###   ########.fr       */
+/*   Updated: 2021/11/23 14:46:47 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	mutex_destroyer(int index, t_philosopher **philo)
 {
 	int	counter;
 
+	if (!*philo)
+		return (0);
 	counter = 0;
 	if (!index)
 	{

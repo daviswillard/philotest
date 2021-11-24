@@ -6,7 +6,7 @@
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:00:01 by dwillard          #+#    #+#             */
-/*   Updated: 2021/11/08 20:00:03 by dwillard         ###   ########.fr       */
+/*   Updated: 2021/11/23 14:45:56 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void	*dead_announcer(void *args)
 		{
 			time = get_time() - data->start_time;
 			ft_usleep(5);
-			pthread_mutex_lock(&data->writer);
+			if (pthread_mutex_lock(&data->writer))
+				return (NULL);
 			printf("%6llu philosopher %d is dead\n", time, data->is_dead);
 			break ;
 		}
@@ -81,5 +82,6 @@ void	*dead_announcer(void *args)
 	}
 	pthread_mutex_unlock(&data->writer);
 	pthread_mutex_destroy(&data->writer);
+	memset(&data->writer, 0, sizeof(pthread_mutex_t));
 	return (NULL);
 }

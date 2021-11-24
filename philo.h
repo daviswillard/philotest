@@ -6,7 +6,7 @@
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:01:34 by dwillard          #+#    #+#             */
-/*   Updated: 2021/11/08 20:01:36 by dwillard         ###   ########.fr       */
+/*   Updated: 2021/11/23 14:45:47 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <unistd.h>
+# include <string.h>
 # include <stdio.h>
 
 typedef struct s_data

@@ -15,24 +15,19 @@
 int	ft_atoi(const char *str)
 {
 	int	ind;
-	int	sgn;
 	int	value;
 
-	sgn = 1;
 	ind = 0;
 	value = 0;
-	while (str[ind] == ' ' || (str[ind] >= '\t' && str[ind] <= '\r'))
-		ind++;
-	if (str[ind] == '-' || str[ind] == '+')
-		if (str[ind++] == '-')
-			sgn = -1;
+	if ((str[ind] > '9' || str[ind] < '0') && str[ind] != '\0')
+		return (-1);
 	while (str[ind] >= '0' && str[ind] <= '9')
 	{
 		value *= 10;
 		value += (str[ind++] - '0');
 	}
-	if (sgn == -1)
-		value = -value;
+	if ((str[ind] > '9' || str[ind] < '0') && str[ind] != '\0')
+		return (-1);
 	return (value);
 }
 
