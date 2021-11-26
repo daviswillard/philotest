@@ -76,16 +76,27 @@ static void	*philosophy(void *args)
 void	create_threads(pthread_t *threads, t_philosopher **philo)
 {
 	int			index;
+	int			cond;
 	pthread_t	announcer;
 
 	index = 0;
-	pthread_create(&announcer, NULL, dead_announcer, philo[0]->data);
-	pthread_detach(announcer);
+	cond = pthread_create(&announcer, NULL, dead_announcer, philo[0]->data);
+	if (cond)
+		return ;
+	if (pthread_detach(announcer))
+		return ;
 	philo[0]->data->start_time = get_time();
 	while (index < philo[0]->data->philo_count)
 	{
-		pthread_create(&threads[index], NULL, philosophy, philo[index]);
+		cond = pthread_create(&threads[index], NULL, philosophy, philo[index]);
 		index++;
 		ft_usleep(1);
+		if (cond)
+		{
+			pthread_mutex_lock(&philo[0]->data->writer);
+			ft_usleep(philo[0]->data->time_to_die);
+			pthread_mutex_unlock(&philo[0]->data->writer);
+			return ;
+		}
 	}
 }

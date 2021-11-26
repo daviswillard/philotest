@@ -27,6 +27,20 @@ int	parse_args(int argc, char **argv)
 	return (0);
 }
 
+static void	join_all(pthread_t *threads, t_data *data, t_philosopher **philo)
+{
+	int	index;
+
+	index = 0;
+	while (data && index < data->philo_count)
+	{
+		pthread_join(threads[index], NULL);
+		index++;
+	}
+	mutex_destroyer(0, philo);
+	free_that(NULL, threads);
+}
+
 void	start(int argc, char **argv)
 {
 	t_philosopher	**philo;
@@ -45,14 +59,7 @@ void	start(int argc, char **argv)
 	index = threads_init(data, philo);
 	if (!index && data)
 		create_threads(threads, philo);
-	index = 0;
-	while (data && index < data->philo_count)
-	{
-		pthread_join(threads[index], NULL);
-		index++;
-	}
-	mutex_destroyer(0, philo);
-	free_that(NULL, threads);
+	join_all(threads, data, philo);
 }
 
 int	main(int argc, char **argv)
