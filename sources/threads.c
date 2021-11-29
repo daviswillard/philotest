@@ -53,11 +53,11 @@ static void	*philosophy(void *args)
 	pthread_t		watcher;
 
 	philo = (t_philosopher *)args;
-	if ((philo->name % 2))
-		ft_usleep(philo->data->time_to_eat);
+	if (!(philo->name % 2))
+		ft_usleep(philo->data->time_to_eat / 3 * 2);
 	pthread_create(&watcher, NULL, watch, philo);
 	pthread_detach(watcher);
-	while (1)
+	while (philo->data->life_status)
 	{
 		forks_action(philo);
 		eat(philo);
@@ -67,8 +67,6 @@ static void	*philosophy(void *args)
 		print(philo, "is sleeping");
 		ft_usleep(philo->data->time_to_sleep);
 		print(philo, "is thinking");
-		if (!philo->data->life_status)
-			break ;
 	}
 	return (NULL);
 }

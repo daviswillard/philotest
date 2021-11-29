@@ -82,6 +82,5 @@ void	*dead_announcer(void *args)
 	}
 	pthread_mutex_unlock(&data->writer);
 	pthread_mutex_destroy(&data->writer);
-	memset(&data->writer, 0, sizeof(pthread_mutex_t));
 	return (NULL);
 }
