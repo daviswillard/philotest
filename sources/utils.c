@@ -60,7 +60,7 @@ void	print(t_philosopher *philo, char *message)
 	if (!philo->data->life_status)
 		return ;
 	pthread_mutex_lock(writer);
-	printf("%6llu philosopher %d %s\n", time, name, message);
+	printf("%6lu philosopher %d %s\n", time, name, message);
 	pthread_mutex_unlock(writer);
 }
 

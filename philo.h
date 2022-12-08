@@ -13,6 +13,9 @@
 #ifndef PHILO_H
 # define PHILO_H
 
+# include <stdint.h>
+# include <sys/wait.h>
+
 # include <stdlib.h>
 # include <pthread.h>
 # include <sys/time.h>
