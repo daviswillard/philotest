@@ -75,7 +75,7 @@ void	*dead_announcer(void *args)
 			ft_usleep(5);
 			if (pthread_mutex_lock(&data->writer))
 				return (NULL);
-			printf("%6llu philosopher %d is dead\n", time, data->is_dead);
+			printf("%6lu philosopher %d is dead\n", time, data->is_dead);
 			break ;
 		}
 		ft_usleep(2);
